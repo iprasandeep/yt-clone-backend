@@ -5,7 +5,7 @@ import usersRoutes from './routes/users.js';
 import videosRoutes from './routes/videos.js';
 import commentsRoutes from './routes/comments.js';
 import authRoutes from './routes/auth.js';
-
+import cookieParser from 'cookie-parser';
 const app = express()
 dotenv.config()
 
@@ -19,10 +19,11 @@ const connect = () =>{
         .catch(err =>{
         throw err;
     })
+    mongoose.set('strictQuery', false)
 }
 // middleware 
-app.use(cookieparser());
 app.use(express.json());
+app.use(cookieParser());
 app.use('/api/users', usersRoutes)
 app.use('/api/videos', videosRoutes)
 app.use('/api/comments', commentsRoutes)
@@ -38,7 +39,6 @@ app.use((err, req, res, next)=>{
         message,
     })
 })
-
 app.listen(8801, ()=>{
     connect()
     console.log('Server Connected !')
