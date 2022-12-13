@@ -10,6 +10,7 @@ const app = express()
 dotenv.config()
 
 const connect = () =>{
+    
     mongoose
     .connect(process.env.MONGO)
         .then(()=>{
@@ -20,19 +21,21 @@ const connect = () =>{
     })
 }
 // middleware 
+app.use(cookieparser());
 app.use(express.json());
 app.use('/api/users', usersRoutes)
 app.use('/api/videos', videosRoutes)
 app.use('/api/comments', commentsRoutes)
 app.use('/api/auth', authRoutes);
 
+
 app.use((err, req, res, next)=>{
     const status = err.status || 500;
-    const message = err.message || 'Something went wwrong!';
+    const message = err.message || 'Something went wrong!';
     return res.status(status).json({
         success: false,
-        status: status, 
-        message: message
+        status, 
+        message,
     })
 })
 
