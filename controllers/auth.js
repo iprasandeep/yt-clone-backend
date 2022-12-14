@@ -33,7 +33,6 @@ export const signin = async (req, res, next)=>{
             return next(createError(400, 'Wrong credentials'));
         
         const token = jwt.sign({id:user._id}, process.env.JWT);
-        // const { password, ...others } = user._doc;
 
         res.cookies('access_token', token, {
             httpOnly:true
