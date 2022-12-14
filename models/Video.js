@@ -1,26 +1,25 @@
 import mongoose from 'mongoose';
 
-const VideSchema = new mongoose.Schema({
+const VideoSchema = new mongoose.Schema({
     userId:{
         type: String, 
         required: true,
-        unique: true,
     },
     title:{
         type: String, 
-        required: true,
-        unique: true,
+        required: true, 
     },
-    password:{
-        type: String, 
-        required: true,
-    },
-    vodeUrl :{
+    imgUrl: {
         type: String,
+        required: true,
+      },
+    desc:{
+        type: String,
+        required: true,
     },
-    subscribers:{
-        type: NUmber, 
-        default: 0
+    videoUrl :{
+        type: String,
+        required: true,
     },
     views:{
         type: [String],
@@ -36,12 +35,9 @@ const VideSchema = new mongoose.Schema({
     },
     dislike:{
         type: [String],
-    },
-    subscribedUsers:{
-        type: [String]
     }
 }, {timestamps: true}
 
 );
 
-export default mongoose.model('Video', VideSchema);
+export default mongoose.model('Video', VideoSchema);

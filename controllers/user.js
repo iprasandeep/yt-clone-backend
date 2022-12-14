@@ -51,16 +51,39 @@ export const getUser = async (req, res, next)=>{
         next(err)
     }
 }
-export const subscribe = (req, res, next)=>{
+export const subscribe = async (req, res, next)=>{
+    try {
+        await User.findById(req.user.id, {
+            $push:{subscribedUsers: req.params.id}
+        })
+        await User.findByIdAndUpdate(req.params.id, {
+            $inc:{ subscribers: 1},
+        });
+        res.status(200).json('Subscrption successfull.')
+    }
+    catch(err){
+        next(err);
+    }
+}
+export const unsubscribe =  async (req, res, next)=>{
+    try {
+        await User.findById(req.user.id, {
+            $push:{subscribedUsers: req.params.id}
+        })
+        await User.findByIdAndUpdate(req.params.id, {
+            $inc:{ subscribers: -1},
+        });
+        res.status(200).json('Unsubscrption successfull.')
+    }
+    catch(err){
+        next(err);
+    }
     
 }
-export const unsubscribe = (req, res, next)=>{
+export const like = async (req, res, next)=>{
     
 }
-export const like = (req, res, next)=>{
-    
-}
-export const dislike = (req, res, next)=>{
+export const dislike = async (req, res, next)=>{
     
 }
 
