@@ -40,11 +40,16 @@ export const deleteUser = async (req, res, next)=>{
 }
     else{
         return next(createError(403, 'You can delete only your account!'));
-    }
-    
+    }   
 }
-export const getUser = (req, res, next)=>{
-    
+export const getUser = async (req, res, next)=>{
+    try{
+        const user = await user.findById(req.params.id)
+        res.status(200).json(user)
+    }catch(err)
+    {
+        next(err)
+    }
 }
 export const subscribe = (req, res, next)=>{
     
