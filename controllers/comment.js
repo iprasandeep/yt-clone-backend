@@ -22,7 +22,7 @@ export const deleteComments =  async (req, res, next) =>{
             res.status(200).json(' The comment has been deleted!')
         }
         else{
-            return next(createError(403), ' You can deleet only your comment!')
+            return next(createError(403), ' You can delete only your comment!')
         }
 
     }catch(err){
@@ -31,10 +31,10 @@ export const deleteComments =  async (req, res, next) =>{
 }
 export const getComments =  async (req, res, next) =>{
     try{
-
+        
         const comments = await Comment.find({ videoId: req.params.videoId})
-
         res.status(200).json(comments);
+
     }catch(err){
         next(err)
     }

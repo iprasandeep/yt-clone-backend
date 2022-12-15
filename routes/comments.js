@@ -6,6 +6,6 @@ const router  = express.Router();
 
 router.post('/', verifyToken, addComments)
 router.delete('/:id', verifyToken, deleteComments)
-router.post('/:videoId',  getComments)
+router.get('/:videoId',  getComments)
 
 export default router;
