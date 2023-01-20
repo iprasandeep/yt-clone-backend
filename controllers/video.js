@@ -48,15 +48,14 @@ export const updateVideo = async (req, res, next)=>{
             catch(err){next(err);
             } 
 }
-export const getVideo = async (req, res, next)=>{
-    try{
-        const video = await Video.findById (rq.params.id)
-        res.status(200).json(video)
-    }catch(err)
-    {
-        next(err);
+export const getVideo = async (req, res, next) => {
+    try {
+      const video = await Video.findById(req.params.id);
+      res.status(200).json(video);
+    } catch (err) {
+      next(err);
     }
-}
+  };
 
 export const addView = async (req, res, next)=>{
     try{

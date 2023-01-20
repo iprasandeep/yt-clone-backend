@@ -36,8 +36,8 @@ export const signin = async (req, res, next)=>{
         .cookie('access_token', token, {
             httpOnly:true
         })
-        .status(200)
-        .json(others);
+        .status(200).json(others)
+
     }
     catch(err)
     {
